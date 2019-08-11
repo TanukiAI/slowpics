@@ -80,6 +80,10 @@ def create_callback(files):
 s = requests.session()
 s.get("https://slowpics.org/comparison")
 collName = input("Please input a name for your collection: ")
+print('\nVideo 1: "'+os.path.basename(v1)+'"')
+v1name = input("Please input a name for Video 1: ")
+print('\nVideo 2: "'+os.path.basename(v2)+'"')
+v2name = input("Please input a name for Video 2: ")
 
 fields={
 "collectionName":collName,
@@ -88,9 +92,9 @@ fields={
 
 for i in range(len(v1files)):
 	fields["comparisons["+str(i)+"].name"] = str(i+1)
-	fields["comparisons["+str(i)+"].images[0].name"] = os.path.basename(v1files[i]).replace(".png","")
+	fields["comparisons["+str(i)+"].images[0].name"] = v1name
 	fields["comparisons["+str(i)+"].images[0].file"] = (os.path.basename(v1files[i]),open(v1files[i],"rb"),"image/png")
-	fields["comparisons["+str(i)+"].images[1].name"] = os.path.basename(v2files[i]).replace(".png","")
+	fields["comparisons["+str(i)+"].images[1].name"] = v2name
 	fields["comparisons["+str(i)+"].images[1].file"] = (os.path.basename(v2files[i]),open(v2files[i],"rb"),"image/png")
 files = MultipartEncoder(fields)
 callback=create_callback(files)
