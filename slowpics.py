@@ -1,4 +1,4 @@
-import subprocess, json, os, glob, datetime, sys
+import subprocess, json, os, glob, datetime, sys, platform
 from shutil import rmtree as rmdir
 try:
 	import requests
@@ -18,7 +18,7 @@ def pec(program):
 	try:
 		subprocess.call(program, stderr=subprocess.DEVNULL, stdout=subprocess.DEVNULL)
 	except FileNotFoundError:
-		print("You didn't install " + program + ". Please put in in PATH or in the current folder and restart the program...")
+		print("You didn't install " + program + ". Please put in in PATH or in the current folder (or install it on unix) and restart the program...")
 	except:
 		raise
 def gft(timed):
@@ -113,5 +113,6 @@ print('Uploading pictures to SlowPics with Collectionname "'+collName+'".')
 ComparisonURL = s.post("https://slowpics.org/api/comparison", data=monitor, headers=headers)
 
 print("URL: https://slowpics.org/comparison/"+ComparisonURL.text)
-copy("https://slowpics.org/comparison/"+ComparisonURL.text)
-print("The URL has been copied to your clipboard.")
+if platform.system() == "Windows":
+	copy("https://slowpics.org/comparison/"+ComparisonURL.text)
+	print("The URL has been copied to your clipboard.")
