@@ -31,8 +31,13 @@ pec("ffmpeg")
 pec("ffprobe")
 
 #Screenshots
+
 v1 = input("Input the Videoname of Video 1: ")
+if os.path.basename(v1) == v1:
+	v1 = "./" + v1
 v2 = input("Input the Videoname of Video 2: ")
+if os.path.basename(v2) == v2:
+	v2 = "./" + v2
 try:
 	duration = int(json.loads(subprocess.check_output(['ffprobe', '-i', v1, '-print_format', 'json', '-v', 'quiet', '-show_format', '-show_streams']))["format"]["duration"].split(".")[0])
 except:
