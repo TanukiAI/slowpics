@@ -59,8 +59,8 @@ print()
 t = 0
 for loli in range(1,sc):
 	t += sctime
-	subprocess.call('ffmpeg -loglevel error -ss '+gft(t)+' -i "'+v1+'" -vframes 1 -q:v 1 "./'+v1dir+'/screenshot_'+str(loli)+'.png"')
-	subprocess.call('ffmpeg -loglevel error -ss '+gft(t)+' -i "'+v2+'" -vframes 1 -q:v 1 "./'+v2dir+'/screenshot_'+str(loli)+'.png"')
+	subprocess.call(['ffmpeg','-loglevel','error','-ss',gft(t),'-i','"'+v1+'"','-vframes','1','-q:v','1','"./'+v1dir+'/screenshot_'+str(loli)+'.png"'])
+	subprocess.call(['ffmpeg','-loglevel','error','-ss',gft(t),'-i','"'+v2+'"','-vframes','1','-q:v','1','"./'+v2dir+'/screenshot_'+str(loli)+'.png"'])
 	print("Created Screenshot "+str(loli))
 v1files = glob.glob(v1dir+"/*.png")
 v2files = glob.glob(v2dir+"/*.png")
